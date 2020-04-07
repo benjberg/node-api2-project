@@ -13,4 +13,4 @@ server.get('/', (req,res) =>{
   `)
 })
 const port = 5001;
-server.listen(port, () => console.log(`/n== api on port ${port} ==\n`))
+ server.listen(port, () => console.log(`/n== api on port ${port} ==\n`))
