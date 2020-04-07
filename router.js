@@ -16,6 +16,18 @@ router.get('/', (req, res) => {
       });
     });
   });
+
+
+  router.get('/:id', (req , res) =>{
+      Posts.findById(req.params.id).then(post=>{
+          if(post){
+          res.status(200).json(post);} 
+          else{
+              res.status(404).json({message: 'post could not be found'})};
+          })
+  });
+
+
   router.post('/', (req,res) => {
       Posts.insert(req.body).then(post =>{
           res.status(201).json({message: 'success'})
@@ -24,4 +36,15 @@ router.get('/', (req, res) => {
       })
   })
 
-  module.exports = router;
+  router.delete('/:id', (req, res) =>{
+      Posts.remove(req.params.id).then(count => {
+          if (count > 0){
+              res.status(200).json({message: 'post deleted'})
+          } else {
+              res.status(404).json({message: 'post could not be found'})
+          }
+      })
+      })
+    
+  
+   module.exports = router;
